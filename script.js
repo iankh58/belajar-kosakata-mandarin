@@ -1,3 +1,4 @@
+// --- Kosakata ---
 const vocab = [
   { pinyin: "Zao shang hao", hanzi: "早上好", arti: "Selamat pagi" },
   { pinyin: "Zao an", hanzi: "早安", arti: "Selamat pagi" },
@@ -88,30 +89,59 @@ function startQuiz(mode) {
 
 function nextQuestion() {
   const randomIndex = Math.floor(Math.random() * (vocab.length + 1));
-  
+
   if (randomIndex === vocab.length) {
-    // generate angka Mandarin
+    // soal angka random
     const num = Math.floor(Math.random() * 1000000) + 1;
-    currentQuestion = { pinyin: numberToChinese(num), hanzi: numberToChinese(num), arti: num.toString() };
+    currentQuestion = { 
+      pinyin: numberToChinese(num), 
+      hanzi: numberToChinese(num), 
+      arti: num.toString() 
+    };
   } else {
     currentQuestion = vocab[randomIndex];
   }
 
   document.querySelector("#question").innerText =
     currentMode === "pinyin" ? currentQuestion.pinyin : currentQuestion.hanzi;
-  document.querySelector("#answer").value = "";
+
+  generateOptions(currentQuestion);
   document.querySelector("#feedback").innerText = "";
 }
 
-function checkAnswer() {
-  const ans = document.querySelector("#answer").value.trim();
-  if (ans === "") return;
-  if (ans.toLowerCase() === currentQuestion.arti.toLowerCase()) {
+function generateOptions(correct) {
+  const optionsContainer = document.querySelector("#options");
+  optionsContainer.innerHTML = "";
+
+  let options = [correct.arti];
+  while (options.length < 4) {
+    const rand = vocab[Math.floor(Math.random() * vocab.length)].arti;
+    if (!options.includes(rand)) options.push(rand);
+  }
+
+  options = shuffleArray(options);
+
+  options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(btn, opt);
+    optionsContainer.appendChild(btn);
+  });
+}
+
+function checkAnswer(button, chosen) {
+  const optionButtons = document.querySelectorAll("#options button");
+  optionButtons.forEach(b => b.disabled = true);
+
+  if (chosen === currentQuestion.arti) {
+    button.classList.add("correct");
     document.querySelector("#feedback").innerText = "✅ Benar!";
-    document.querySelector("#feedback").style.color = "green";
   } else {
+    button.classList.add("wrong");
     document.querySelector("#feedback").innerText = `❌ Salah. Jawaban: ${currentQuestion.arti}`;
-    document.querySelector("#feedback").style.color = "red";
+    optionButtons.forEach(b => {
+      if (b.innerText === currentQuestion.arti) b.classList.add("correct");
+    });
   }
 }
 
@@ -120,6 +150,11 @@ function goHome() {
   document.querySelector("#quiz").classList.add("hidden");
 }
 
+function shuffleArray(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+// --- fungsi konversi angka sederhana ---
 function numberToChinese(num) {
   const units = ["", "十", "百", "千", "万", "十万", "百万"];
   const digits = ["零","一","二","三","四","五","六","七","八","九"];
