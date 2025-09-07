@@ -1,3 +1,4 @@
+/* Reset dasar */
 * {
   margin: 0;
   padding: 0;
@@ -15,8 +16,8 @@ body {
   padding: 10px;
 }
 
-.container, .quiz {
-   width: 100%;
+.container, #quiz {
+  width: 100%;
   max-width: 480px; /* biar enak di HP tapi tetap oke di desktop */
   background: #fff;
   padding: 20px;
@@ -36,43 +37,15 @@ button {
   margin: 8px 0;
   border: none;
   border-radius: 8px;
+  background: #007bff;
+  color: white;
   font-size: 16px;
   cursor: pointer;
   transition: 0.2s;
 }
 
-/* tombol utama */
-.btn {
-  background: #007bff;
-  color: white;
-}
-
-.btn:hover {
+button:hover {
   background: #0056b3;
-}
-
-/* tombol sukses */
-.btn-success {
-  background: #28a745;
-  color: white;
-}
-
-.btn-success:hover {
-  background: #1e7e34;
-}
-
-/* tombol danger */
-.btn-danger {
-  background: #dc3545;
-  color: white;
-}
-
-.btn-danger:hover {
-  background: #b02a37;
-}
-
-.hidden {
-  display: none;
 }
 
 .options {
