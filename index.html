@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Belajar Kosakata Mandarin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Belajar Kosakata Mandarin</h1>
+    <p>Website ini membantu kamu belajar <b>Pinyin</b>, <b>Hanzi</b>, dan artinya dalam bahasa Indonesia.</p>
+
+    <h2>📖 Penjelasan</h2>
+    <ul>
+      <li><b>Pinyin</b>: sistem romanisasi bahasa Mandarin, contohnya <i>Zǎo shàng hǎo</i>.</li>
+      <li><b>Hanzi</b>: huruf Mandarin, contohnya <i>早上好</i>.</li>
+      <li><b>Arti</b>: makna dalam bahasa Indonesia, contohnya “Selamat pagi”.</li>
+    </ul>
+
+    <h2>🎯 Mode Belajar</h2>
+    <button onclick="startQuiz('pinyin')">Tebak dari Pinyin</button>
+    <button onclick="startQuiz('hanzi')">Tebak dari Hanzi</button>
+  </div>
+
+  <div class="quiz hidden" id="quiz">
+    <h2 id="quiz-title"></h2>
+    <p id="question"></p>
+    <input type="text" id="answer" placeholder="Tulis jawabanmu di sini...">
+    <button onclick="checkAnswer()">Jawab</button>
+    <p id="feedback"></p>
+    <button onclick="nextQuestion()">Soal Berikutnya</button>
+    <button onclick="goHome()">Kembali</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
