@@ -36,15 +36,39 @@ button {
   margin: 8px 0;
   border: none;
   border-radius: 8px;
-  background: #007bff;
-  color: white;
   font-size: 16px;
   cursor: pointer;
   transition: 0.2s;
 }
 
-button:hover {
+/* tombol utama */
+.btn {
+  background: #007bff;
+  color: white;
+}
+
+.btn:hover {
   background: #0056b3;
+}
+
+/* tombol sukses */
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #1e7e34;
+}
+
+/* tombol danger */
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #b02a37;
 }
 
 .hidden {
